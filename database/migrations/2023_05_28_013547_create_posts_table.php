@@ -25,8 +25,6 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('SET NULL'); // category
             $table->text('body');
-            $table->boolean('published')->default(false);
-            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }
