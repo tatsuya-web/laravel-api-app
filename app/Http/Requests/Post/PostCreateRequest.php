@@ -27,6 +27,8 @@ class PostCreateRequest extends FormRequest
             'user_id' => ['required', 'integer', 'exists:users,id'],
             'category_id' => ['required', 'integer', 'exists:categories,id'],
             'body' => ['required', 'string', 'max:1000'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
+            // 'image' => ['required', 'image', 'max:2048', 'mimes:jpeg,png,jpg,gif,svg'],
         ];
     }
 }

@@ -50,4 +50,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    /**
+     * Get the media for the user.
+     */
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
 }

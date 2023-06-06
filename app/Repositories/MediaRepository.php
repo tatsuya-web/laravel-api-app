@@ -13,17 +13,28 @@ class MediaRepository implements RepositoryInterface
         /**
          * @var Collection $categories
          */
-        $media = Media::all();
+        $media = Media::where('user_id', $validated['user_id'])
+                    ->orderBy('created_at', 'desc')
+                    ->get();
 
         return $media;
     }
 
     public function createExcecute(array $validated): Media
     {
+        $file = $validated['image'];
         /**
          * @var Media $media
          */
-        $media = Media::create($validated);
+        $media = Media::create([
+            'name' => $validated['title'],
+            'file_path' => $file->store('public/media'),
+            'file_name' => $file->getClientOriginalName(),
+            'mime_type' => $file->getMimeType(),
+            'alt_text' => $validated['title'],
+            'user_id' => $validated['user_id'],
+            'size' => $file->getSize(),
+        ]);
 
         return $media;
     }

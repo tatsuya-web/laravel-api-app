@@ -36,4 +36,12 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * Get the media for the post.
+     */
+    public function media()
+    {
+        return $this->belongsToMany(Media::class);
+    }
 }
