@@ -7,7 +7,6 @@ use App\Repositories\MediaRepository;
 use App\Services\Media\MediaIndexService;
 use App\Http\Requests\Media\MediaIndexRequest;
 use Illuminate\Support\Collection;
-use Illuminate\View\View;
 
 class IndexController extends Controller
 {
@@ -17,7 +16,7 @@ class IndexController extends Controller
      * @param MediaIndexRequest $request
      * @return View
      */
-    public function __invoke(MediaIndexRequest $request): View
+    public function __invoke(MediaIndexRequest $request): Collection
     {
         /**
          * @var MediaRepository $repo
@@ -28,6 +27,6 @@ class IndexController extends Controller
         $service = new MediaIndexService($repo, $request);
         $media   = $service->index();
 
-        return view('media.index', ['media' => $media]);
+        return $media;
     }
 }
