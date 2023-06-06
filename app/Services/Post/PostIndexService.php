@@ -27,6 +27,7 @@ class PostIndexService
     public function index(): Collection
     {
         $validated = $this->request->validated();
+        $validated['user_id'] = $this->request->user()->id;
         /**
          * @var Collection $posts
          */

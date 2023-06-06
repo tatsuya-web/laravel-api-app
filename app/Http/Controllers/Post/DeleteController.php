@@ -5,17 +5,15 @@ namespace App\Http\Controllers\Post;
 use App\Http\Controllers\Controller;
 use App\Repositories\PostRepository;
 use App\Services\Post\PostDeleteService;
-use App\Request\Post\PostDeleteRequest;
-use \Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Post\PostDeleteRequest;
 
 class DeleteController extends Controller
 {
     /**
      * delete post
      * @param PostDeleteRequest $request
-     * @return RedirectResponse
      */
-    public function __invoke(PostDeleteRequest $request): RedirectResponse
+    public function __invoke(PostDeleteRequest $request)
     {
         /**
          * @var PostRepository $repo
@@ -23,9 +21,9 @@ class DeleteController extends Controller
          * @var Post $post
          */
         $repo    = new PostRepository();
-        $service = newPostDeleteService($repo, $request);
+        $service = new PostDeleteService($repo, $request);
         $service->delete();
 
-        return redirect()->route('post.index');
+        return response()->noContent();
     }
 }

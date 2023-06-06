@@ -8,7 +8,6 @@ use App\Services\Post\PostIndexService;
 use App\Repositories\PostRepository;
 use App\Http\Requests\Post\PostIndexRequest;
 use Illuminate\Support\Collection;
-use \Illuminate\View\View;
 
 class IndexController extends Controller
 {
@@ -16,9 +15,9 @@ class IndexController extends Controller
      * Post index
      *
      * @param PostIndexRequest $request
-     * @return View
+     * @return Collection
      */
-    public function __invoke(PostIndexRequest $request): View
+    public function __invoke(PostIndexRequest $request): Collection
     {
         /**
          * @var PostRepository $repo
@@ -29,6 +28,6 @@ class IndexController extends Controller
         $service = new PostIndexService($repo, $request);
         $posts   = $service->index();
 
-        return view('post.index', ['posts' => $posts]);
+        return $posts;
     }
 }

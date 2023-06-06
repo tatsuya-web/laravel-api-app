@@ -13,7 +13,9 @@ class PostRepository implements RepositoryInterface
         /**
          * @var Collection $posts
          */
-        $posts = Post::all();
+        $posts = Post::where('user_id', $validated['user_id'])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return $posts;
     }
@@ -39,11 +41,12 @@ class PostRepository implements RepositoryInterface
     }
 
     public function updateExcecute(array $validated): Post
-    {
+    { 
         /**
          * @var Post $post
          */
         $post = Post::findOrFail($validated['id']);
+
         $post->update($validated);
 
         return $post;

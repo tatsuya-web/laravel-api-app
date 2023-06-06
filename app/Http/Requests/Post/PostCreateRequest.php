@@ -23,7 +23,10 @@ class PostCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'string', 'max:255'],
+            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'category_id' => ['required', 'integer', 'exists:categories,id'],
+            'body' => ['required', 'string', 'max:1000'],
         ];
     }
 }

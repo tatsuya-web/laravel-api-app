@@ -6,16 +6,6 @@ use App\Models\Post;
 use App\Services\RepositoryInterface;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * @return PostDeleteService
- * @throws \Illuminate\Contracts\Container\BindingResolutionException
- * @throws \ReflectionException
- */
-function newPostCreateService(RepositoryInterface $repo, FormRequest $request): PostCreateService
-{
-    return new PostCreateService($repo, $request);
-}
-
 class PostCreateService
 {
     function __construct(RepositoryInterface $repo, FormRequest $request)

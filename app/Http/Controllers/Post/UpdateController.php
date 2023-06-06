@@ -7,14 +7,14 @@ use App\Http\Requests\Post\PostUpdateRequest;
 use App\Repositories\PostRepository;
 use App\Services\Post\PostUpdateService;
 use App\Models\Post;
-use \Illuminate\Http\RedirectResponse;
 
 class UpdateController extends Controller
 {
     /**
-     * update post
+     * @param PostUpdateRequest $request
+     * @return Post
      */
-    public function __invoke(PostUpdateRequest $request): RedirectResponse
+    public function __invoke(PostUpdateRequest $request): Post
     {
         /**
          * @var PostRepository $repo
@@ -23,8 +23,8 @@ class UpdateController extends Controller
          */
         $repo    = new PostRepository();
         $service = new PostUpdateService($repo, $request);
-        $post = $service->update();
+        $post    = $service->update();
 
-        return redirect()->route('post.read', ['id' => $post->id]);
+        return $post;
     }
 }

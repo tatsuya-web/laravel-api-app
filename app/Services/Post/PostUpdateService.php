@@ -7,16 +7,6 @@ use App\Services\RepositoryInterface;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Post;
 
-/**
- * @return PostUpdateService
- * @throws \Illuminate\Contracts\Container\BindingResolutionException
- * @throws \ReflectionException
- */
-function newPostUpdateService(RepositoryInterface $repo, FormRequest $request): PostUpdateService
-{
-    return new PostUpdateService($repo, $request);
-}
-
 class PostUpdateService
 {
     function __construct(RepositoryInterface $repo, FormRequest $request)
